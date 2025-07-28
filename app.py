@@ -193,7 +193,7 @@ elif page == 'Prediksi Kardiomegali':
     st.markdown('<div style="color:#4F8BF9;font-size:18px;font-weight:bold;">Langkah-langkah Prediksi:</div>', unsafe_allow_html=True)
     st.markdown('''
     <ol>
-    <li>Upload Citra X-ray dada (format JPG/JPEG/PNG, grayscale/warna).</li>
+    <li>Upload Citra X-ray dada (format JPG/JPEG/PNG, grayscale).</li>
     <li>Klik tombol <b>Prediksi.</b></li>
     <li>Lihat hasil prediksi di bawah.</li>
     </ol>
