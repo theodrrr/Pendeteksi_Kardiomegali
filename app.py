@@ -15,27 +15,143 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS untuk mempercantik tampilan
-st.markdown("""
+st.markdown(
+    """
     <style>
-    .main {
-        background-color: #f7f9fa;
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stSidebar"] {
+        color-scheme: light !important;
+        background: #f7f9fa !important;
+        color: #222831 !important;
+    }
+    .stApp {
+        background: #f7f9fa !important;
+        color: #222831 !important;
+    }
+    /* Sidebar background and text */
+    section[data-testid="stSidebar"] {
+        background-color: #eaf6fb !important;
+        color: #222831 !important;
+    }
+    /* Sidebar radio label (all states) */
+    section[data-testid="stSidebar"] .stRadio label,
+    section[data-testid="stSidebar"] .stRadio label span {
+        color: #222831 !important;
+        opacity: 1 !important;
+        font-weight: 600 !important;
+    }
+    /* Sidebar radio selected */
+    section[data-testid="stSidebar"] .stRadio label[data-baseweb="radio"] > div:first-child {
+        background: #4F8BF9 !important;
+        border: 2px solid #4F8BF9 !important;
+    }
+    /* Sidebar radio unselected */
+    section[data-testid="stSidebar"] .stRadio label[data-baseweb="radio"] > div:first-child[aria-checked="false"] {
+        background: #fff !important;
+        border: 2px solid #4F8BF9 !important;
+    }
+    /* Sidebar title and custom text */
+    section[data-testid="stSidebar"] h1, 
+    section[data-testid="stSidebar"] h2, 
+    section[data-testid="stSidebar"] h3, 
+    section[data-testid="stSidebar"] h4, 
+    section[data-testid="stSidebar"] h5, 
+    section[data-testid="stSidebar"] h6, 
+    section[data-testid="stSidebar"] p, 
+    section[data-testid="stSidebar"] li, 
+    section[data-testid="stSidebar"] span, 
+    section[data-testid="stSidebar"] div {
+        color: #222831 !important;
+    }
+    /* Remove unwanted opacity on sidebar */
+    section[data-testid="stSidebar"] * {
+        opacity: 1 !important;
+    }
+    .stMarkdown, .stMarkdown * {
+        color: #222831 !important;
+    }
+    .st-bb, .st-bb * {
+        color: #222831 !important;
+    }
+    .st-cq, .st-cq * {
+        color: #222831 !important;
+    }
+    .stAlert, .stAlert * {
+        color: #222831 !important;
     }
     .stButton>button {
-        background-color: #4F8BF9;
-        color: white;
-        border-radius: 8px;
-        padding: 0.5em 2em;
-        font-weight: bold;
+        background-color: #4F8BF9 !important;
+        color: white !important;
     }
     .stFileUploader>div>div {
-        background: #e3eafc;
-        border-radius: 8px;
+        background: #e3eafc !important;
+        border-radius: 8px !important;
     }
     .stSidebar {
-        background-color: #e3eafc;
+        background-color: #e3eafc !important;
     }
     </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Custom CSS untuk mempercantik tampilan
+st.markdown("""
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+html, body, [data-testid="stAppViewContainer"], [data-testid="stSidebar"] {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+}
+.stApp {
+    background: #f7f9fa !important;
+}
+.home-title {
+    font-size: 2.8rem;
+    color: #4F8BF9;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    letter-spacing: 1px;
+}
+.card-blue {
+    background: #eaf6fb;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #e3eafc;
+    padding: 2.2em 2.5em 1.5em 2.5em;
+    margin-bottom: 2em;
+}
+.card-yellow {
+    background: #fffbe6;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #f7e9b0;
+    padding: 2.2em 2.5em 1.5em 2.5em;
+    margin-bottom: 2em;
+}
+.card-green {
+    background: #eafaf1;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #b3e6c9;
+    padding: 2.2em 2.5em 1.5em 2.5em;
+    margin-bottom: 2em;
+}
+.card-pink {
+    background: #fdeaea;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #f7c6c6;
+    padding: 2.2em 2.5em 1.5em 2.5em;
+    margin-bottom: 2em;
+}
+.card-purple {
+    background: #f5eef8;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #e0c3f7;
+    padding: 2.2em 2.5em 1.5em 2.5em;
+    margin-bottom: 2em;
+}
+</style>
 """, unsafe_allow_html=True)
 
 # Percantik sidebar navigasi
@@ -120,78 +236,86 @@ with st.sidebar:
     st.markdown("""<small>Created by <b>Theodore Gabbelambok S</b> | Skripsi 2025</small>""", unsafe_allow_html=True)
 
 if page == 'Home':
-    st.title('🫀 Kardiomegali (Pembesaran Jantung)')
+    st.markdown('<div class="home-title">🫀 Kardiomegali (Pembesaran Jantung)</div>', unsafe_allow_html=True)
     st.markdown('''
-    <div style="background:#e3eafc;padding:1em 2em;border-radius:10px;">
-    <h2 style="color:#4F8BF9;">Apa Itu Kardiomegali?</h2>
-    <b>Kardiomegali</b> adalah kondisi di mana jantung membesar melebihi ukuran normal. Ini biasanya terdeteksi melalui pemeriksaan X-ray dada. Kardiomegali bukanlah penyakit, melainkan tanda dari kondisi lain seperti hipertensi, penyakit katup jantung, atau kardiomiopati.<br><br>
-    <blockquote style="background:#fffbe6;padding:0.7em 1.5em;border-left:5px solid #4F8BF9;font-style:italic;">"Jantung yang sehat adalah kunci hidup yang berkualitas."</blockquote>
-    <h3 style="color:#e74c3c;">Seberapa Bahaya Kardiomegali?</h3>
-    <ul>
-    <li>Gagal jantung kronis</li>
-    <li>Gangguan irama jantung (aritmia)</li>
-    <li>Pembekuan darah yang bisa menyebabkan stroke</li>
-    <li>Kematian mendadak</li>
-    </ul>
-    <h3 style="color:#4F8BF9;">Gejala yang Perlu Diwaspadai</h3>
-    <ul>
-    <li>Sesak napas, terutama saat aktivitas atau berbaring</li>
-    <li>Nyeri dada</li>
-    <li>Palpitasi (jantung berdebar)</li>
-    <li>Kelelahan berlebihan</li>
-    <li>Bengkak pada kaki atau pergelangan kaki</li>
-    </ul>
-    <h3 style="color:#4F8BF9;">Penyebab Umum</h3>
-    <ul>
-    <li>Tekanan darah tinggi (hipertensi)</li>
-    <li>Penyakit jantung koroner</li>
-    <li>Kelainan katup jantung</li>
-    <li>Kardiomiopati (penyakit otot jantung)</li>
-    <li>Anemia berat</li>
-    <li>Gangguan tiroid</li>
-    <li>Infeksi pada jantung</li>
-    </ul>
-    <h3 style="color:#4F8BF9;">Bagaimana Cara Mendeteksi?</h3>
-    <ul>
-    <li>Rontgen dada (X-ray)</li>
-    <li>Echocardiogram (USG jantung)</li>
-    <li>EKG (Elektrokardiogram)</li>
-    <li>MRI jantung</li>
-    <li>CT scan</li>
-    <li>Pemeriksaan darah</li>
-    </ul>
-    <div style="background:#d1f2eb;padding:1em 1.5em;border-radius:8px;margin:1em 0;">
-    <b>Fun Fact:</b> Tidak semua pembesaran jantung bersifat permanen! Pada beberapa kasus, kardiomegali bisa membaik jika penyebab utamanya diatasi.
+    <div class="card-blue">
+        <h2>Apa Itu Kardiomegali?</h2>
+        <p><b>Kardiomegali</b> adalah kondisi di mana jantung membesar melebihi ukuran normal. Ini biasanya terdeteksi melalui pemeriksaan X-ray dada. Kardiomegali bukanlah penyakit, melainkan tanda dari kondisi lain seperti hipertensi, penyakit katup jantung, atau kardiomiopati.</p>
+        <div class="home-highlight">⚠️ <b>Info Penting:</b> Aplikasi ini masih dalam tahap pengembangan. Selalu konsultasikan hasil ke dokter!</div>
+        <blockquote style="background:#fffbe6;padding:0.7em 1.5em;border-left:5px solid #4F8BF9;font-style:italic;">"Jantung yang sehat adalah kunci hidup yang berkualitas."</blockquote>
     </div>
-    <h3 style="color:#27ae60;">Tips Pencegahan Kardiomegali</h3>
-    <ul>
-    <li>Kontrol tekanan darah secara rutin</li>
-    <li>Jaga pola makan sehat (rendah garam, rendah lemak jenuh)</li>
-    <li>Olahraga teratur sesuai anjuran dokter</li>
-    <li>Hindari merokok dan konsumsi alkohol berlebihan</li>
-    <li>Kelola stres dengan baik</li>
-    <li>Rutin cek kesehatan jantung, terutama jika ada riwayat keluarga</li>
-    </ul>
-    <div style="background:#f9e79f;padding:1em 1.5em;border-radius:8px;margin:1em 0;">
-    <b>Tips Sehat:</b> Luangkan waktu 30 menit setiap hari untuk aktivitas fisik ringan seperti jalan kaki atau bersepeda.
+    <div class="card-yellow">
+        <h2>Seberapa Bahaya Kardiomegali?</h2>
+        <ul>
+            <li>Gagal jantung kronis</li>
+            <li>Gangguan irama jantung (aritmia)</li>
+            <li>Pembekuan darah yang bisa menyebabkan stroke</li>
+            <li>Kematian mendadak</li>
+        </ul>
     </div>
-    <h3 style="color:#e67e22;">Langkah Jika Terdiagnosis Kardiomegali</h3>
-    <ol>
-    <li>Konsultasi ke dokter spesialis jantung untuk evaluasi lebih lanjut</li>
-    <li>Ikuti anjuran pengobatan dan kontrol rutin</li>
-    <li>Perbaiki gaya hidup (makan sehat, olahraga, cukup istirahat)</li>
-    <li>Minum obat sesuai resep dokter</li>
-    <li>Segera ke IGD jika mengalami sesak berat, nyeri dada hebat, atau pingsan</li>
-    </ol>
-    <div style="background:#f5eef8;padding:1em 1.5em;border-radius:8px;margin:1em 0;">
-    <b>Call to Action:</b> Jangan abaikan gejala jantung! Deteksi dan penanganan dini dapat menyelamatkan hidup Anda dan keluarga.
+    <div class="card-green">
+        <h2>Gejala yang Perlu Diwaspadai</h2>
+        <ul>
+            <li>Sesak napas, terutama saat aktivitas atau berbaring</li>
+            <li>Nyeri dada</li>
+            <li>Palpitasi (jantung berdebar)</li>
+            <li>Kelelahan berlebihan</li>
+            <li>Bengkak pada kaki atau pergelangan kaki</li>
+        </ul>
     </div>
-    <h4 style="color:#4F8BF9;">Sumber Referensi:</h4>
-    <ul>
-    <li><a href="https://www.mayoclinic.org/diseases-conditions/enlarged-heart/symptoms-causes/syc-20355436" target="_blank">Mayo Clinic: Enlarged Heart (Cardiomegaly)</a></li>
-    <li><a href="https://www.heart.org/en/health-topics/heart-failure/what-is-heart-failure/types-of-cardiomyopathy/enlarged-heart-cardiomegaly" target="_blank">American Heart Association: Enlarged Heart (Cardiomegaly)</a></li>
-    <li><a href="https://www.alodokter.com/kardiomegali" target="_blank">Alodokter: Kardiomegali</a></li>
-    </ul>
+    <div class="card-pink">
+        <h2>Penyebab Umum</h2>
+        <ul>
+            <li>Tekanan darah tinggi (hipertensi)</li>
+            <li>Penyakit jantung koroner</li>
+            <li>Kelainan katup jantung</li>
+            <li>Kardiomiopati (penyakit otot jantung)</li>
+            <li>Anemia berat</li>
+            <li>Gangguan tiroid</li>
+            <li>Infeksi pada jantung</li>
+        </ul>
+    </div>
+    <div class="card-blue">
+        <h2>Bagaimana Cara Mendeteksi?</h2>
+        <ul>
+            <li>Rontgen dada (X-ray)</li>
+            <li>Echocardiogram (USG jantung)</li>
+            <li>EKG (Elektrokardiogram)</li>
+            <li>MRI jantung</li>
+            <li>CT scan</li>
+            <li>Pemeriksaan darah</li>
+        </ul>
+        <div class="home-funfact">💡 <b>Fun Fact:</b> Tidak semua pembesaran jantung bersifat permanen! Pada beberapa kasus, kardiomegali bisa membaik jika penyebab utamanya diatasi.</div>
+    </div>
+    <div class="card-yellow">
+        <h2>Tips Pencegahan Kardiomegali</h2>
+        <ul>
+            <li>Kontrol tekanan darah secara rutin</li>
+            <li>Jaga pola makan sehat (rendah garam, rendah lemak jenuh)</li>
+            <li>Olahraga teratur sesuai anjuran dokter</li>
+            <li>Hindari merokok dan konsumsi alkohol berlebihan</li>
+            <li>Kelola stres dengan baik</li>
+            <li>Rutin cek kesehatan jantung, terutama jika ada riwayat keluarga</li>
+        </ul>
+        <div class="home-tips">🏃‍♂️ <b>Tips Sehat:</b> Luangkan waktu 30 menit setiap hari untuk aktivitas fisik ringan seperti jalan kaki atau bersepeda.</div>
+    </div>
+    <div class="card-green">
+        <h2>Langkah Jika Terdiagnosis Kardiomegali</h2>
+        <ol>
+            <li>Konsultasi ke dokter spesialis jantung untuk evaluasi lebih lanjut</li>
+            <li>Ikuti anjuran pengobatan dan kontrol rutin</li>
+            <li>Perbaiki gaya hidup (makan sehat, olahraga, cukup istirahat)</li>
+            <li>Minum obat sesuai resep dokter</li>
+            <li>Segera ke IGD jika mengalami sesak berat, nyeri dada hebat, atau pingsan</li>
+        </ol>
+    </div>
+    <div class="card-purple">
+        <h2>Sumber Referensi</h2>
+        <ul>
+            <li><a href="https://www.mayoclinic.org/diseases-conditions/enlarged-heart/symptoms-causes/syc-20355436" target="_blank">Mayo Clinic: Enlarged Heart (Cardiomegaly)</a></li>
+            <li><a href="https://www.heart.org/en/health-topics/heart-failure/what-is-heart-failure/types-of-cardiomyopathy/enlarged-heart-cardiomegaly" target="_blank">American Heart Association: Enlarged Heart (Cardiomegaly)</a></li>
+            <li><a href="https://www.alodokter.com/kardiomegali" target="_blank">Alodokter: Kardiomegali</a></li>
+        </ul>
     </div>
     ''', unsafe_allow_html=True)
 
