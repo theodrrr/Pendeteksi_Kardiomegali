@@ -5,6 +5,8 @@ import tensorflow as tf
 import io, base64
 import datetime
 import time
+import os
+import gdown
 
 st.set_page_config(
     page_title="Prediksi Kardiomegali X-ray Dada",
@@ -68,8 +70,13 @@ st.markdown(f'<div style="background:#fffbe6;border-left:6px solid #f7ca18;paddi
 # Load model dengan error handling
 @st.cache_resource
 def load_model():
+    model_path = 'model.h5'
+    gdrive_url = 'https://drive.google.com/uc?id=1TKZBYltovGYCaBIxk6Tg1mYbHQSq84v6'
     try:
-        return tf.keras.models.load_model('best_model.h5')
+        if not os.path.exists(model_path):
+            with st.spinner('Mengunduh model dari Google Drive...'):
+                gdown.download(gdrive_url, model_path, quiet=False)
+        return tf.keras.models.load_model(model_path)
     except Exception as e:
         st.error(f"Model gagal dimuat: {e}")
         st.stop()
